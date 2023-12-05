@@ -1,0 +1,30 @@
+#VERSION OF DOCKER COMPOSE
+version: '3'
+#DEFINING THE SERVICES
+services:
+  #APP SERVICE
+  myapp:
+    #CREATED IMAGE
+    image: myimage
+    #WAITING FOR THE DB SERVICE
+    depends_on:
+      - mydb
+    #MAPPING PORTS
+    ports:
+      - "3000"
+    networks:
+      - appnetwork
+  #DATABASE SERVICE
+  mydb:
+    image: mongo
+    #DEFAULT MONGODB PORTS
+    ports:
+      - 27017:27017
+    container_name: mongodb
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
+
+
